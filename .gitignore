@@ -13,3 +13,6 @@ gen
 dependency-reduced-pom.xml
 .idea
 *.iml
+
+#   Remove any local settings that could contain sensitive information
+local.*

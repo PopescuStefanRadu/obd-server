@@ -25,4 +25,8 @@ public class ReadingService {
         return repo.findAllByVin(vin, new PageRequest(page, size));
     }
 
+    public Page<ObdReading> getAllObdReadings(Integer page, Integer size){
+        return repo.findAll(new PageRequest(page,size));
+    }
+
 }

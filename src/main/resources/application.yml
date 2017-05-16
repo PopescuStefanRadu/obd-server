@@ -6,17 +6,26 @@ spring:
   profiles.active: default
 ---
 spring:
-  profiles: default   # this is for local development. For QA, Production override these values
+  profiles: default
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties.hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+  datasource:
+    username: radu
+    password: radulocal
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url:  jdbc:mysql://localhost/obd?serverTimezone=UTC
+
 
 spring.jmx:
    enabled: false
 
-spring.datasource:
-    driverClassName: org.h2.Driver
-    url: jdbc:h2:mem:obd;MODE=MySQL;DB_CLOSE_ON_EXIT=FALSE
-
 server:
   port: 8080
+  address:  192.168.0.105
 
 #todo: make sure to always enable security in production
 security:
@@ -40,6 +49,7 @@ info:
     name: ${project.name}
     description: ${project.description}
     version: ${project.version}
+
 ---
 spring:
   profiles: test

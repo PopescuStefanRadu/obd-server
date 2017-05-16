@@ -28,9 +28,12 @@ public class ReadingController {
 
     @RequestMapping(method = GET)
     Page<ObdReading> page(
-            @RequestParam(value = "vin", required = true) final String vin,
+            @RequestParam(value = "vin", required = false) final String vin,
             @RequestParam(value = "page", required = false, defaultValue = DEFAULT_PAGE_NUM) final Integer page,
             @RequestParam(value = "size", required = false, defaultValue = DEFAULT_PAGE_SIZE) final Integer size) {
+        if (vin == null) {
+            return readingService.getAllObdReadings(page,size);
+        }
         return readingService.getAllReadingsFromVin(vin, page, size);
     }
 
